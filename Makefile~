@@ -1,4 +1,4 @@
-obj-m += solidusmodule.o
+obj-m += FirstDriver.o
 
 KDIR = /usr/src/linux-headers-3.16.0-30-generic
 
