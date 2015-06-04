@@ -40,7 +40,7 @@ ssize_t device_read(struct file* filp, char* bufStoreData, size_t bufCount, loff
 	// take data from kernel space(device) to user space (process)
 	// copy_to_user (destination, source,sizeToTransfer)
 	printk(KERN_INFO "soliduscode: Reading from device");
-	ret = copy_to_user(bufStoreData,virtual_device.daa,bufCount);
+	ret = copy_to_user(bufStoreData,virtual_device.data,bufCount);
 	return ret;
 }
 // called when user wants to send information to the device
@@ -86,7 +86,7 @@ static int driver_entry(void){
 	mcdev->owner = THIS_MODULE;
 	// now that we created cdev, we have to add it to the kernel
 	// int cdev_add(struct cdev* dev, dev_t num, unsigned int count)
-	ret = cdev_add(mcdev, dev_num,1);
+	ret = cdev_add(mcdev, dev_num, 1);
 	if(ret < 0) { // always check errors
 		printk(KERN_ALERT "soliduscode: unable to add cdev to kernel");
 		return ret;

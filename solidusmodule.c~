@@ -40,7 +40,7 @@ ssize_t device_read(struct file* filp, char* bufStoreData, size_t bufCount, loff
 	// take data from kernel space(device) to user space (process)
 	// copy_to_user (destination, source,sizeToTransfer)
 	printk(KERN_INFO "soliduscode: Reading from device");
-	ret = copy_to_user(bufStoreData,virtual_device.daa,bufCount);
+	ret = copy_to_user(bufStoreData,virtual_device.data,bufCount);
 	return ret;
 }
 // called when user wants to send information to the device
